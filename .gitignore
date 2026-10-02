@@ -1,0 +1,11 @@
+# Secrets
+.env
+*.env
+
+# Script output (contains temporary passwords)
+output/
+
+# OS and editor clutter
+Thumbs.db
+desktop.ini
+.vscode/

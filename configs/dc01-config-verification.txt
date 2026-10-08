@@ -1,0 +1,161 @@
+﻿
+=== Domain ===
+
+DNSRoot            NetBIOSName PDCEmulator                    DomainMode
+-------            ----------- -----------                    ----------
+ad.nebula.internal NEBULA      DC01.ad.nebula.internal Windows2025Domain
+
+
+
+
+=== DNS client ===
+
+InterfaceAlias               Interface Address ServerAddresses                                                                                                                                                                                            
+                             Index     Family                                                                                                                                                                                                             
+--------------               --------- ------- ---------------                                                                                                                                                                                            
+Ethernet0                           10 IPv4    {10.10.10.10, 127.0.0.1}                                                                                                                                                                                   
+
+
+
+
+=== DNS zones ===
+
+ZoneName                            ZoneType        IsAutoCreated   IsDsIntegrated  IsReverseLookupZone  IsSigned       
+--------                            --------        -------------   --------------  -------------------  --------       
+_msdcs.ad.nebula.internal           Primary         False           True            False                False          
+0.in-addr.arpa                      Primary         True            False           True                 False          
+10.10.10.in-addr.arpa               Primary         False           True            True                 False          
+127.in-addr.arpa                    Primary         True            False           True                 False          
+255.in-addr.arpa                    Primary         True            False           True                 False          
+ad.nebula.internal                  Primary         False           True            False                False          
+
+
+
+
+=== Forwarders ===
+
+
+UseRootHint        : True
+Timeout(s)         : 3
+EnableReordering   : True
+IPAddress          : 10.10.10.254
+ReorderedIPAddress : 10.10.10.254
+
+
+
+
+
+=== SRV record ===
+
+Name                                     Type   TTL   Section    NameTarget                     Priority Weight Port
+----                                     ----   ---   -------    ----------                     -------- ------ ----
+_ldap._tcp.dc._msdcs.ad.nebula.internal  SRV    600   Answer     dc01.ad.nebula.internal        0        100    389 
+
+Name       : dc01.ad.nebula.internal
+QueryType  : A
+TTL        : 3600
+Section    : Additional
+IP4Address : 10.10.10.10
+
+
+
+
+
+=== Time source ===
+Local CMOS Clock
+
+
+=== DHCP authorised ===
+
+IPAddress            DnsName                                                                         
+---------            -------                                                                         
+10.10.10.10          dc01.ad.nebula.internal                                                         
+
+
+
+
+=== DHCP scope ===
+
+ScopeId         SubnetMask      Name           State    StartRange      EndRange        LeaseDuration                                                                                                                                                     
+-------         ----------      ----           -----    ----------      --------        -------------                                                                                                                                                     
+10.10.10.0      255.255.255.0   Corp-LAN       Active   10.10.10.100    10.10.10.199    8.00:00:00                                                                                                                                                        
+
+
+
+
+=== DHCP options ===
+
+OptionId   Name            Type       Value                VendorClass     UserClass       PolicyName     
+--------   ----            ----       -----                -----------     ---------       ----------     
+15         DNS Domain Name String     {ad.nebula.internal}                                                
+3          Router          IPv4Add... {10.10.10.254}                                                      
+6          DNS Servers     IPv4Add... {10.10.10.10}                                                       
+51         Lease           DWord      {691200}                                                            
+
+
+
+
+=== Reservations ===
+
+IPAddress            ScopeId              ClientId             Name                 Type                 Description         
+---------            -------              --------             ----                 ----                 -----------         
+10.10.10.50          10.10.10.0           00-0c-29-9f-87-11    CL01.ad.nebula.in... Both                                     
+
+
+
+
+=== Computers ===
+
+Name DistinguishedName                                        
+---- -----------------                                        
+DC01 CN=DC01,OU=Domain Controllers,DC=ad,DC=nebula,DC=internal
+CL01 CN=CL01,CN=Computers,DC=ad,DC=nebula,DC=internal         
+
+
+
+
+=== dcdiag ===
+         An error event occurred.  EventID: 0x00000423
+
+            Time Generated: 10/08/2026   16:23:13
+
+            Event String:
+
+            The DHCP service failed to see a directory server for authorization.
+
+         An error event occurred.  EventID: 0x00000423
+
+            Time Generated: 10/08/2026   16:23:13
+
+            Event String:
+
+            The DHCP service failed to see a directory server for authorization.
+
+         An error event occurred.  EventID: 0x0000168E
+
+            Time Generated: 10/08/2026   16:23:13
+
+            Event String:
+
+            The dynamic registration of the DNS record 'ad.nebula.internal. 600 IN A 10.10.10.10' failed on the following DNS server:  
+
+
+         An error event occurred.  EventID: 0x00000423
+
+            Time Generated: 10/08/2026   16:51:26
+
+            Event String:
+
+            The DHCP service failed to see a directory server for authorization.
+
+         An error event occurred.  EventID: 0x00000423
+
+            Time Generated: 10/08/2026   16:51:26
+
+            Event String:
+
+            The DHCP service failed to see a directory server for authorization.
+
+         ......................... DC01 failed test SystemLog
+
+

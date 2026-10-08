@@ -1,4 +1,4 @@
-## 7. DHCP on DC01
+# 7. DHCP on DC01
 
 ### 1. Confirm the authorisation worked
 

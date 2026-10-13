@@ -1,0 +1,29 @@
+services:
+  glpi:
+    image: glpi/glpi:latest
+    restart: unless-stopped
+    volumes:
+      - glpi_data:/var/glpi          # named volume: Docker sets correct ownership
+    env_file: .env                   # DB connection details (never committed)
+    depends_on:
+      db:
+        condition: service_healthy   # start GLPI only once MySQL answers
+    ports:
+      - "80:80"                      # UBU01 port 80 → container port 80
+
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    volumes:
+      - ./storage/mysql:/var/lib/mysql   # bind mount: works because MySQL fixes its own ownership
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: ${GLPI_DB_NAME}
+      MYSQL_USER: ${GLPI_DB_USER}
+      MYSQL_PASSWORD: ${GLPI_DB_PASSWORD}
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      interval: 5s
+
+volumes:
+  glpi_data:                         # declares the named volume used above

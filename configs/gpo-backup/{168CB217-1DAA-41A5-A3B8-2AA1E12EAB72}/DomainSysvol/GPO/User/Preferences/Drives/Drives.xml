@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Drives clsid="{8FDDCC1A-0C3C-43cd-A6B4-71A6DF20DA8C}"><Drive clsid="{935D1B74-9CB8-4e3c-9914-7DD559B7A417}" name="F:" status="F:" image="2" changed="2026-10-14 13:02:53" uid="{3F583BFA-A05F-417B-8BC1-4F058BDE888C}" bypassErrors="1"><Properties action="U" thisDrive="NOCHANGE" allDrives="NOCHANGE" userName="" path="\\dc01\Finance" label="Finance" persistent="0" useLetter="1" letter="F"/><Filters><FilterGroup bool="AND" not="0" name="NEBULA\GG_Finance" sid="S-1-5-21-449197493-336324295-1900770890-1106" userContext="1" primaryGroup="0" localGroup="0"/></Filters></Drive>
+</Drives>

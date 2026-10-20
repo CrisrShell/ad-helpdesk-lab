@@ -27,3 +27,7 @@ Simulated small-business IT environment: a Windows Server 2025 Active Directory 
 ## Skills 
 
 [Technical skills gained]
+
+## To do
+
+[ ] Manual vs script timing (3 users) → docs/evidence/timing.md

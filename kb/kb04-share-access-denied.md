@@ -6,7 +6,7 @@
 | **GLPI ticket** | #3 |
 | **Category** | Access |
 | **Priority** | Medium (Impact: Low · Urgency: High, one user can't work) |
-| **SLA** | TTO 30 min · TTR 8 h → `<met / missed>` |
+| **SLA** | TTO 30 min · TTR 8 h → met |
 | **Affected user** | Grace Patel (`gpatel`), Finance |
 | **Status** | Closed |
 

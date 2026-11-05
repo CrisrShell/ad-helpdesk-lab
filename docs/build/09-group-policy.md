@@ -106,7 +106,13 @@ Keeps every company PC patched without relying on users.
 
 The last test proves the whole **AGDLP** chain from step 1.4: user → `GG_Finance` → `DL_Share_Finance_RW` → Modify.
 
-Note: **aperez** user (Sales, not in GG_Finance) has been used as login session and `\\dc01\Finance` access evidence ![aperez session](../img/aperez-session.png) and ![aperez denied access to Finance](../img/aperez-access-to-finance-denied.png)
+Note: **aperez** user (Sales, not in GG_Finance) has been used as login session and `\\dc01\Finance` access evidence
+
+![aperez session](../img/aperez-session.png) 
+
+and
+
+ ![aperez denied access to Finance](../img/aperez-access-to-finance-denied.png)
 
 ---
 

@@ -1,7 +1,6 @@
 # CL01: the first client
 
-**Q: How was the VM built, and why?**
-A:
+**Q: How was the VM built, and why?** A:
 - Windows 11 needs UEFI, Secure Boot and a **TPM**. VMware adds a virtual TPM, which requires encrypting the VM's TPM files with a password.
 - 1 socket × 2 cores, 4 GB RAM, 64 GB thin disk, NIC on **VMnet10**.
 - I chose "Domain join instead" during setup. It creates a local admin account rather than a Microsoft account; that local account is used to join the domain.

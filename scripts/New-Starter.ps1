@@ -11,7 +11,7 @@ param(
 Import-Module ActiveDirectory
 
 $results = foreach ($u in Import-Csv $CsvPath) {
-    $sam = ($u.FirstName.Substring(0,1) + $u.LastName).ToLower()          # e.g. Ava Stone → astone
+    $sam = ($u.FirstName.Substring(0,1) + $u.LastName).ToLower()          # e.g. Ava Stone -> astone
     if (Get-ADUser -Filter "SamAccountName -eq '$sam'") {
         Write-Warning "$sam already exists - skipped"; continue            # never overwrite an existing account
     }
@@ -38,5 +38,7 @@ $results = foreach ($u in Import-Csv $CsvPath) {
     }
 }
 # LAB ONLY: in production, temporary passwords go to the manager through a secure channel, never into a file
-$results | Export-Csv .\output\new-starters.csv -NoTypeInformation
+$outDir = Join-Path $PSScriptRoot 'output'                              # always next to the script, wherever it's run from
+New-Item -ItemType Directory -Force $outDir | Out-Null
+$results | Export-Csv (Join-Path $outDir 'new-starters.csv') -NoTypeInformation
 $results | Format-Table User, Department

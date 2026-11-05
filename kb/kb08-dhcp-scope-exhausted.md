@@ -1,12 +1,12 @@
-# 08 – No network, APIPA address: DHCP scope exhausted
+# 08 No network, APIPA address: DHCP scope exhausted
 
 | Field | Value |
 |---|---|
 | **Type** | Incident: network |
 | **GLPI ticket** | #4 |
 | **Category** | Network |
-| **Priority** | `<priority shown in GLPI>` (Impact: High · Urgency: High: every new or renewing device affected) |
-| **SLA** | TTO 30 min · TTR 8 h → `<met / missed>` |
+| **Priority** | `High` (Impact: High · Urgency: High: every new or renewing device affected) |
+| **SLA** | TTO 30 min · TTR 8 h → `met` |
 | **Affected** | CL01 (user Ava Stone); potentially every DHCP client on `10.10.10.0/24` |
 | **Status** | Closed |
 
@@ -101,6 +101,8 @@ Test-NetConnection dc01 -Port 445               # TcpTestSucceeded : True
 | **Task** (private) | Unknown clients not in GLPI inventory: possible DHCP starvation. Recommend switch-port trace, DHCP snooping |
 | **Follow-up** | "Your network connection has been restored. Please let us know if any other PCs had the same problem." |
 | **Solution** | Scope exhausted by 5 unknown clients. Leases removed, range and CL01 reservation restored; connectivity confirmed |
+
+**Audit note:** a solution was added by mistake before the work was finished. It was **refused** (status back to Processing), and the final solution was added after verification. Both remain in the timeline: tickets are records, not drafts.
 
 **Separate issue:** the user's missing F: drive existed **before** this incident, so it was logged as **ticket #5**. Mixing two faults in one ticket hides the root cause of each.
 

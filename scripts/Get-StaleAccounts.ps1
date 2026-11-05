@@ -5,10 +5,12 @@
 param([int]$Days = 30)
 Import-Module ActiveDirectory
 $cutoff = (Get-Date).AddDays(-$Days)
+$outDir = Join-Path $PSScriptRoot 'output'
+New-Item -ItemType Directory -Force $outDir | Out-Null
 
 Get-ADUser -Filter 'Enabled -eq $true' -Properties LastLogonDate, PasswordNeverExpires |
     Where-Object { -not $_.LastLogonDate -or $_.LastLogonDate -lt $cutoff -or $_.PasswordNeverExpires } |
     Select-Object Name, SamAccountName, LastLogonDate, PasswordNeverExpires |
     Tee-Object -Variable report |
-    Export-Csv .\output\stale-accounts.csv -NoTypeInformation
+    Export-Csv (Join-Path $outDir 'stale-accounts.csv') -NoTypeInformation
 $report | Format-Table

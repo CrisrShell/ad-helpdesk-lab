@@ -1,4 +1,4 @@
-# 07 – Access denied to the Finance share: user removed from group
+# 07 Access denied to the Finance share: user removed from group
 
 | Field | Value |
 |---|---|

@@ -1,4 +1,4 @@
-# 06 – Forgotten password: reset with identity verification
+# 06 Forgotten password: reset with identity verification
 
 | Field | Value |
 |---|---|

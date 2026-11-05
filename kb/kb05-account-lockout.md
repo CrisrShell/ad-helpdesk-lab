@@ -1,14 +1,14 @@
-# 05  User account locked out
+# 05 User account locked out
 
 | Field | Value |
 |---|---|
 | **Type** | Incident: account access |
-| **GLPI ticket** | # `1` |
+| **GLPI ticket** | #1 |
 | **Category** | Account |
-| **Priority** | `Low` |
-| **SLA** | TTO 30 min · TTR 8 h → `met` |
+| **Priority** | Low (Impact: Low · Urgency: Medium, one user) |
+| **SLA** | TTO 30 min · TTR 8 h → **met** |
 | **Affected user** | Ava Stone (`astone`), Finance |
-| **Status** | Resolved |
+| **Status** | Closed |
 
 ---
 
@@ -36,7 +36,7 @@ Get-ADDefaultDomainPasswordPolicy | Select-Object LockoutThreshold, LockoutDurat
 ```powershell
 Get-ADUser astone | Select-Object Name, SamAccountName, Enabled
 ```
-`<paste output>`
+Result: `Ava Stone · astone · True`: the account exists and the logon name is correct.
 
 **2. Is it locked?**
 ```powershell
@@ -44,13 +44,13 @@ Search-ADAccount -LockedOut | Select-Object Name, SamAccountName
 Get-ADUser astone -Properties LockedOut, BadLogonCount, LastBadPasswordAttempt, LockoutTime |
   Select-Object LockedOut, BadLogonCount, LastBadPasswordAttempt, LockoutTime
 ```
-`<paste output>`. Expect `LockedOut : True` and `BadLogonCount : 5`.
+Result: `LockedOut : True`: the lockout is confirmed.
 
 **3. Where did the bad passwords come from?**
 ```powershell
 Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4740} -MaxEvents 5 | Format-List TimeCreated, Message
 ```
-**Event 4740** = "a user account was locked out". **Caller Computer Name** shows the machine that sent the bad passwords: `<CL01 / not logged>`.
+**Event 4740** = "a user account was locked out". **Caller Computer Name** shows the machine that sent the bad passwords (CL01).
 
 > If no 4740 events appear, account-management auditing isn't recording on the DC. Note it as a finding; steps 1–2 are enough to confirm the lockout.
 
@@ -86,4 +86,4 @@ The first test targeted `lpark`, an account that **didn't exist**. No lockout oc
 
 **First diagnostic step for any "can't log in" ticket: confirm the account exists and check its exact logon name.** Verify against the system, not against documentation.
 
-**Skills learned:** Active Directory · account lockout policy · `Search-ADAccount` · Security event log (4740) · GLPI ticket lifecycle · user communication
+**Skills:** Active Directory · account lockout policy · `Search-ADAccount` · Security event log (4740) · GLPI ticket lifecycle · user communication

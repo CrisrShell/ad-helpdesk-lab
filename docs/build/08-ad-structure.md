@@ -1,4 +1,4 @@
-# 1.4: Active Directory structure – OUs, groups and a secured share
+# Active Directory structure – OUs, groups and a secured share
 
 **Goal:** organise the domain like a real company: folders for people and computers, groups for roles, and a shared folder that only the right department can use.
 

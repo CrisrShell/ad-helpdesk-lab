@@ -1,4 +1,4 @@
-# 00 – Lab has no internet name resolution on eduroam (plus: ping fails from lab VMs)
+# 01 – Lab has no internet name resolution on eduroam (plus: ping fails from lab VMs)
 
 **Type:** Lab infrastructure fault · **Priority:** P3 (blocks patching, not the whole lab) · **Status:** DNS worked around; ICMP from lab VMs fails (known VMware NAT limitation, accepted)
 **Affected:** DC01 (10.10.10.10) and, by design, every lab VM
@@ -85,4 +85,4 @@ On the home network:
 - Never leave a security control disabled after a test. Re-enable it immediately and verify (`Get-NetFirewallProfile`).
 - On shared networks, the acceptable-use policy applies: scanning stays inside the lab.
 
-**Time to diagnose:** ~<fill in> min · **Skills:** layered troubleshooting, ARP, NAT verification, ICMP vs TCP/UDP testing, DNS, variable isolation, elimination testing
+**Skills:** layered troubleshooting, ARP, NAT verification, ICMP vs TCP/UDP testing, DNS, variable isolation, elimination testing

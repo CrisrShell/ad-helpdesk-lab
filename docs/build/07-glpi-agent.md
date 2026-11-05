@@ -1,4 +1,4 @@
-# 1.3 H: GLPI Agent – automatic asset inventory
+# GLPI Agent – automatic asset inventory
 
 **Goal:** every Windows machine reports its hardware and software to GLPI automatically, so the service desk always knows what each computer has.
 

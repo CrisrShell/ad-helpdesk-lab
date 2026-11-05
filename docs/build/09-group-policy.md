@@ -1,4 +1,4 @@
-# 1.5: Group Policy – central control of users and computers
+# Group Policy - central control of users and computers
 
 **Goal:** apply company rules automatically (password rules, mapped drives, restrictions, updates) to the right users and computers, without touching each PC.
 
@@ -51,9 +51,12 @@ Shared as `\\dc01\Finance` (share permission: Authenticated Users = Change; NTFS
 | User | Logon | OU | Group |
 |---|---|---|---|
 | Ava Stone | `astone` | `Nebula\Users\Finance` | `GG_Finance` |
-| Liam Park | `lpark` | `Nebula\Users\Sales` | `GG_Sales` |
+| Lily Shaw | `lshaw` | `Nebula\Users\Sales` | `GG_Sales` |
 
-Created with *"User must change password at next logon"*, the normal practice for new accounts. Step 1.6 automates this process.
+Created with *"User must change password at next logon"*, the normal practice for new accounts. Lily Shaw was created by `New-Starter.ps1` (step 1.6).
+
+> **Correction:** the first Sales tests used `lpark` (later found **not to exist**: see KB 05) and then `oward`, who had been **offboarded** by `Remove-Leaver.ps1` in step 1.6 (*"Your account has been disabled"*). Tests were rerun with `lshaw`, an active Sales user.
+> **Lesson:** check the test account's state in AD (`Get-ADUser <name>`, looking at `Enabled` and the OU) **before** testing.
 
 ---
 
@@ -97,11 +100,13 @@ Keeps every company PC patched without relying on users.
 |---|---|---|---|
 | Computer policy applied | Administrator | `gpupdate /force` → `gpresult /r /scope computer` | `C-WindowsUpdate` listed ✅ |
 | Finance drive | `astone` | File Explorer | **F: Finance** present; can create files ✅ |
-| Drive targeting | `lpark` | File Explorer | No F: drive (filtered out by targeting) ✅ |
-| Control Panel blocked | `lpark` | Open Control Panel | Blocked by policy ✅ |
-| Share security | `lpark` | `\\dc01\Finance` | **Access denied:** not in `DL_Share_Finance_RW` ✅ |
+| Drive targeting | `lshaw` | File Explorer | No F: drive (filtered out by targeting) ✅ |
+| Control Panel blocked | `lshaw` | Open Control Panel | Blocked by policy ✅ |
+| Share security | `lshaw` | `\\dc01\Finance` | **Access denied:** not in `DL_Share_Finance_RW` ✅ |
 
 The last test proves the whole **AGDLP** chain from step 1.4: user → `GG_Finance` → `DL_Share_Finance_RW` → Modify.
+
+Note: **aperez** user has been used as login session and `\\dc01\Finance` access evidence [01](docs/img/aperez-session.png) and [02](docs/img/aperez-access-to-finance-denied.png)
 
 ---
 
@@ -120,7 +125,7 @@ gpresult /user NEBULA\astone /h C:\gp-report-astone.html     # run as Administra
 
 ## Result
 - [x] Finance share corrected and verified
-- [x] Two test users in the correct OUs and groups
+- [x] Two test users in the correct OUs and groups (`astone` Finance, `lshaw` Sales)
 - [x] Four GPOs created, linked and tested
 - [x] Evidence: `gp-report-astone.html` (Ava's user policies + CL01's computer policies)
 - [x] Snapshots taken

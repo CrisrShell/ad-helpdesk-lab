@@ -1,4 +1,4 @@
-# 1.3: UBU01 + GLPI
+# UBU01 + GLPI
 
 **Goal:** an Ubuntu server (UBU01) that hosts **GLPI**, the lab's IT service desk: tickets, knowledge base and asset inventory.
 

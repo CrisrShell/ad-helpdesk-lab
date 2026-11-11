@@ -65,7 +65,7 @@ Each ticket was logged and worked in GLPI, and is written up as a knowledge-base
 | [07](kb/kb07-share-access-denied.md) | Access denied to Finance share | #3 | Effective Access, AGDLP, event 4729, logon tokens, approval workflow |
 | [08](kb/kb08-dhcp-scope-exhausted.md) | No network: APIPA, DHCP scope exhausted | #4 | DHCP audit log, scope statistics, DHCP starvation awareness, change control |
 
-![GLPI ticket timeline: tasks, refused and accepted solution, follow-up](docs/img/ticket-04-glpi.png)
+![GLPI ticket timeline: tasks, refused and accepted solution, follow-up](../img/ticket-04-glpi.png)
 
 ---
 
